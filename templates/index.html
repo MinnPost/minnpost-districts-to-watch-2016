@@ -1,0 +1,242 @@
+<link rel="stylesheet" href="https://s3.amazonaws.com/data.minnpost/projects/minnpost-styles/0.0.6-alpha/minnpost-styles.min.css" type="text/css">
+
+<style>
+    body .node-unpublished {background-repeat: no-repeat;}
+    .hidden {display: none;}
+    .filter-links li a {padding:5px; font-size: .8em;}
+    .filtering, .filtering a {color: #fff!important; background-color:#0793AB; border-radius: 5px;}
+    .mp .election {padding: 1em; border-bottom: 1px solid #ccc;}
+    .mp .map-link {margin: -1em 0 1em;}
+    .mp #total-contests {padding-bottom: 1em; border-bottom: 1px solid #ccc;}
+    .search-box {width: 100%; margin: 0 auto 1em; text-align: center}
+    .mp .form-input-group {width:80%; margin: 0 auto;}
+    #text_search {width: 100%;}
+    #total-contests {text-align: center;}
+</style>
+
+
+<div class="mp">
+
+    <div class="filter-links navigation horizontal">
+        <h4>Show only:</h4>
+        <ul>
+            <li><a href="#" data-filter="senate">Senate</a></li>
+            <li><a href="#" data-filter="house">House</a></li>
+            <li><a href="#" data-filter="uncontested">Uncontested</a></li>
+            <li><a href="#" data-filter="open-seat">Open Seat</a></li>
+            <li><a href="#" data-filter="dfl-primary">DFL Primary</a></li>
+            <li><a href="#" data-filter="gop-primary">GOP Primary</a></li>
+            <li><a href="#" data-filter="metro">Metro</a></li>
+            <li><a href="#" data-filter="greatermn">Greater MN</a></lo>
+            <li><a href="#" data-filter="reset">Show All</a></li>
+        </ul>
+    </div>
+
+    <div class="search-box">
+    	<form id="search-form">
+            <div class="form-input-group">
+        	    <input id="text_search" type="text" placeholder="Search" />
+                <div class="button-group">
+                    <button type="reset" id="search-reset" class="button info">Clear</button>
+                </div>
+            </div>
+    	</form>
+    </div>
+
+    <div id="total-contests">
+    </div>
+
+    {% for contest in contests %}
+
+    <div class="election{{contest.classes}}">
+      <div class="row">
+        <h4>{{contest.title}}</h4>
+        <div class="map-link"><a href="{{contest.map_url}}" target="_blank">District map</a> [PDF]</div>
+        <div class="current-race column-medium-50">
+          <strong>Incumbent:</strong>
+
+          <ul class="candidate-list">
+            {% if contest.incumbent[0] == "Open seat" %}
+            <li>None - open seat</li>
+
+            {% else %}
+            <li class="candidate"><span class="color-political-{{contest.incumbent[1].lower()}}">{{contest.incumbent[0]}} ({{contest.incumbent[1]}})</span> (First elected: {{contest.incumbent[2]}})</li>
+
+            {% endif %}
+          </ul>
+          {% if contest.candidates %}
+          {% if contest.incumbent[0] != "Open seat" %}
+            <strong>Challengers:</strong>
+          {% else %}
+            <strong>Candidates:</strong>
+          {% endif %}
+
+
+          <ul class="candidate-list">
+          {% for candidate in contest.candidates %}
+            <li class="candidate"><span class="color-political-{{candidate[1].lower()}}">{{candidate[0]}} ({{candidate[1]}})</span></li>
+          {% endfor %}
+          </ul>
+          {% endif %}
+
+        </div>
+
+        <div class="past-result column-medium-50">
+          Election {{contest.last_election_year}} result:
+          <table>
+            <thead>
+              <tr><th>Candidate (Party)</th><th>Vote %</th></tr>
+            </thead>
+            <tbody>
+            {% for candidate in contest.last_election_results %}
+              <tr>
+                  <td><span class="color-political-{{candidate.party.lower()}}">{{candidate.name}} ({{candidate.party}})</span></td>
+                  <td>{{candidate.percentage}}%</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+    function showTotal() {
+        var total = $('.election').length
+        var displaying = 0
+        var candidates = 0
+        $('.election').each(function(){
+            if( !$(this).hasClass("hidden") ) {
+                displaying++
+                $('.candidate',this).each(function(){
+                  candidates++
+                });
+            }
+        });
+
+
+        $('#total-contests').html("Displaying <strong>" + candidates + "</strong> candidates "+
+                                  "in <strong>" + displaying + "</strong> " +
+                                   "races (out of <strong>" + total + "</strong> total races).");
+    };
+
+    $('.filter-links a').click(function(e){
+
+        e.preventDefault();
+
+        if ($(this).data("filter") == "reset") {
+          $('.filter-links a').each(function(){
+            $(this).removeClass("filtering")
+          });
+          $('#search-form').trigger("reset");
+
+        } else {
+          $(this).toggleClass("filtering")
+        }
+
+        //Metro and Greater MN mutual exclusivity
+        if ($(this).data("filter") == "greatermn") {
+            $('*[data-filter="metro"]').removeClass("filtering")
+        }
+        if ($(this).data("filter") == "metro") {
+            $('*[data-filter="greatermn"]').removeClass("filtering")
+        }
+
+        //House and Senate mutual exclusivity
+        if ($(this).data("filter") == "house") {
+            $('*[data-filter="senate"]').removeClass("filtering")
+        }
+        if ($(this).data("filter") == "senate") {
+            $('*[data-filter="house"]').removeClass("filtering")
+        }
+
+
+        var filters = new Array()
+        $('.filter-links a').each(function(){
+          if ($(this).hasClass("filtering")) {
+            filters.push($(this).data("filter"))
+          }
+        });
+
+        $('.election').each(function(){
+            var displaying = 1
+
+            for (f in filters) {
+              if (!$(this).hasClass(filters[f])) {
+                displaying = 0
+              }
+            }
+            if (displaying == 0) {
+              $(this).addClass("hidden")
+            } else {
+              $(this).removeClass("hidden")
+            }
+        });
+
+        showTotal();
+    });
+
+    $('#text_search').keyup(function() {
+        var filter = $(this).val()
+
+        $(".election").each(function(){
+            if(!$(this).hasClass("hidden")) {
+              if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                  $(this).addClass("hidden");
+              } else {
+                  $(this).removeClass("hidden");
+              }
+            }
+        })
+
+        showTotal();
+    });
+
+    $('#search-form').on("reset", function() {
+
+        var filter = ''
+
+        $(".election").each(function(){
+            if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                $(this).addClass("hidden");
+            } else {
+                $(this).removeClass("hidden");
+            }
+        });
+
+        var filters = new Array()
+        $('.filter-links a').each(function(){
+          if ($(this).hasClass("filtering")) {
+            filters.push($(this).data("filter"))
+          }
+        });
+
+        $('.election').each(function(){
+            var displaying = 1
+
+            for (f in filters) {
+              if (!$(this).hasClass(filters[f])) {
+                displaying = 0
+              }
+            }
+            if (displaying == 0) {
+              $(this).addClass("hidden")
+            } else {
+              $(this).removeClass("hidden")
+            }
+        });
+
+        showTotal();
+    });
+
+    $(document).ready(function() {
+        showTotal();
+    });
+</script>
