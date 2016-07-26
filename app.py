@@ -92,7 +92,35 @@ def prev_election_data():
                                                 "name": name,
                                                 "party": party,
                                                 "percentage": percentage
-                                            }]
+                                             }]
+
+    #2012 pres results
+    election_results['prez'] = {}
+    with open('data/2012-pres-by-HD.csv','r') as f:
+        reader = csv.reader(f)
+        next(reader) #skip header
+        for row in reader:
+            district = row[0]
+            if district[0] == "0": #leading 0s are bad
+                district = district[1:]
+            title = "State Representative District " + district
+            election_results['prez'][title] = {
+                                                'romney': int(float(row[4])*100),
+                                                'obama': int(float(row[5])*100)
+                                                }
+    with open('data/2012-pres-by-SD.csv','r') as f:
+        reader = csv.reader(f)
+        next(reader) #skip header
+        for row in reader:
+            district = row[0]
+            if district[0] == "0": #leading 0s are bad
+                district = district[1:]
+            title = "State Senator District " + district
+            election_results['prez'][title] = {
+                                                'romney': int(float(row[4])*100),
+                                                'obama': int(float(row[5])*100)
+                                                }
+
     return election_results
 
 def candidate_data():
@@ -135,6 +163,8 @@ def map_url(election_title):
 def formatted_elections(elections):
 
     f_elections = []
+
+    election_data = prev_election_data()
 
     for election in elections:
         title = election
@@ -187,7 +217,8 @@ def formatted_elections(elections):
         else:
             last_election_year = "2014"
 
-        last_election_results = prev_election_data().get(title)
+        last_election_results = election_data.get(title)
+        prez_results = election_data['prez'].get(title)
 
         #filtering to Lege elections
         if "State Senator" in title or "State Representative" in title:
@@ -198,7 +229,8 @@ def formatted_elections(elections):
                                     "candidates": candidates,
                                     "classes": classes,
                                     "last_election_year": last_election_year,
-                                    "last_election_results": last_election_results
+                                    "last_election_results": last_election_results,
+                                    "prez_results": prez_results
                                 })
 
 
