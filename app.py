@@ -217,8 +217,29 @@ def formatted_elections(elections):
         else:
             last_election_year = "2014"
 
-        last_election_results = election_data.get(title)
-        prez_results = election_data['prez'].get(title)
+        last_election_results = election_data.get(title) #for this election
+
+        related_election_results = [] #for 2 HDs in SD or 1 SD in HD
+        if "State Senator" in title:
+            district = title[23:]
+            for letter in ["A","B"]:
+                related_district_title = "State Representative District " + district +letter
+                print(related_district_title)
+                related_district_result = election_data.get(related_district_title)
+                related_election_results.append({'title':related_district_title,
+                                                 'year': '2014',
+                                                 'result': related_district_result})
+        if "State Representative" in title:
+            district = title[29:-1]
+            related_district_title = "State Senator District" + district
+            print(related_district_title)
+            related_district_result = election_data.get(related_district_title)
+            related_election_results.append({'title':related_district_title,
+                                             'year': '2012',
+                                             'result': related_district_result})
+
+
+        prez_results = election_data['prez'].get(title) #2012 presidential result
 
         #filtering to Lege elections
         if "State Senator" in title or "State Representative" in title:
@@ -230,6 +251,7 @@ def formatted_elections(elections):
                                     "classes": classes,
                                     "last_election_year": last_election_year,
                                     "last_election_results": last_election_results,
+                                    "related_election_results": related_election_results,
                                     "prez_results": prez_results
                                 })
 
