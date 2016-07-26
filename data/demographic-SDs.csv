@@ -1,0 +1,78 @@
+GISJOIN,YEAR,STATE,DISTRICT,CHAMBER,population,med_age,pct_white,med_income
+G270001,2010-2014,Minnesota,1,"State Senate District 01 (2014), Minnesota",79235,41,0.92,50710
+G270002,2010-2014,Minnesota,2,"State Senate District 02 (2014), Minnesota",79915,41.3,0.80,46893
+G270003,2010-2014,Minnesota,3,"State Senate District 03 (2014), Minnesota",79345,46.5,0.93,53091
+G270004,2010-2014,Minnesota,4,"State Senate District 04 (2014), Minnesota",81029,34.8,0.90,53084
+G270005,2010-2014,Minnesota,5,"State Senate District 05 (2014), Minnesota",80239,42.2,0.85,44607
+G270006,2010-2014,Minnesota,6,"State Senate District 06 (2014), Minnesota",78600,46.2,0.94,45087
+G270007,2010-2014,Minnesota,7,"State Senate District 07 (2014), Minnesota",79015,33.2,0.89,42416
+G270008,2010-2014,Minnesota,8,"State Senate District 08 (2014), Minnesota",79507,45.6,0.95,50438
+G270009,2010-2014,Minnesota,9,"State Senate District 09 (2014), Minnesota",78377,42.6,0.95,46843
+G270010,2010-2014,Minnesota,10,"State Senate District 10 (2014), Minnesota",78864,45.5,0.95,47263
+G270011,2010-2014,Minnesota,11,"State Senate District 11 (2014), Minnesota",78747,41.9,0.90,49162
+G270012,2010-2014,Minnesota,12,"State Senate District 12 (2014), Minnesota",79332,42.8,0.94,52896
+G270013,2010-2014,Minnesota,13,"State Senate District 13 (2014), Minnesota",80295,35.4,0.94,62638
+G270014,2010-2014,Minnesota,14,"State Senate District 14 (2014), Minnesota",79746,30.4,0.84,46203
+G270015,2010-2014,Minnesota,15,"State Senate District 15 (2014), Minnesota",79940,38.7,0.94,61400
+G270016,2010-2014,Minnesota,16,"State Senate District 16 (2014), Minnesota",78348,41.2,0.91,50233
+G270017,2010-2014,Minnesota,17,"State Senate District 17 (2014), Minnesota",78054,42,0.87,51882
+G270018,2010-2014,Minnesota,18,"State Senate District 18 (2014), Minnesota",78563,40.1,0.93,55530
+G270019,2010-2014,Minnesota,19,"State Senate District 19 (2014), Minnesota",80274,30.1,0.90,51602
+G270020,2010-2014,Minnesota,20,"State Senate District 20 (2014), Minnesota",80452,35.9,0.92,69035
+G270021,2010-2014,Minnesota,21,"State Senate District 21 (2014), Minnesota",79551,42.1,0.93,56322
+G270022,2010-2014,Minnesota,22,"State Senate District 22 (2014), Minnesota",78532,41.6,0.84,49318
+G270023,2010-2014,Minnesota,23,"State Senate District 23 (2014), Minnesota",78605,43.3,0.92,53756
+G270024,2010-2014,Minnesota,24,"State Senate District 24 (2014), Minnesota",79314,38.9,0.85,55203
+G270025,2010-2014,Minnesota,25,"State Senate District 25 (2014), Minnesota",80329,35.3,0.85,71743
+G270026,2010-2014,Minnesota,26,"State Senate District 26 (2014), Minnesota",81214,38.2,0.82,63786
+G270027,2010-2014,Minnesota,27,"State Senate District 27 (2014), Minnesota",79026,41.7,0.86,47072
+G270028,2010-2014,Minnesota,28,"State Senate District 28 (2014), Minnesota",78901,39,0.95,49313
+G270029,2010-2014,Minnesota,29,"State Senate District 29 (2014), Minnesota",79733,36.5,0.94,69334
+G270030,2010-2014,Minnesota,30,"State Senate District 30 (2014), Minnesota",80676,34.6,0.91,81201
+G270031,2010-2014,Minnesota,31,"State Senate District 31 (2014), Minnesota",79403,38.8,0.94,79197
+G270032,2010-2014,Minnesota,32,"State Senate District 32 (2014), Minnesota",80279,38.5,0.94,65702
+G270033,2010-2014,Minnesota,33,"State Senate District 33 (2014), Minnesota",81896,43.7,0.93,93564
+G270034,2010-2014,Minnesota,34,"State Senate District 34 (2014), Minnesota",83369,38.2,0.87,91309
+G270035,2010-2014,Minnesota,35,"State Senate District 35 (2014), Minnesota",80317,37.9,0.89,76259
+G270036,2010-2014,Minnesota,36,"State Senate District 36 (2014), Minnesota",80027,36.8,0.77,77240
+G270037,2010-2014,Minnesota,37,"State Senate District 37 (2014), Minnesota",81620,36.5,0.82,70304
+G270038,2010-2014,Minnesota,38,"State Senate District 38 (2014), Minnesota",80944,40.1,0.90,81645
+G270039,2010-2014,Minnesota,39,"State Senate District 39 (2014), Minnesota",80213,42.6,0.92,79420
+G270040,2010-2014,Minnesota,40,"State Senate District 40 (2014), Minnesota",81194,31.3,0.42,47211
+G270041,2010-2014,Minnesota,41,"State Senate District 41 (2014), Minnesota",80273,37.6,0.71,53924
+G270042,2010-2014,Minnesota,42,"State Senate District 42 (2014), Minnesota",81822,41.9,0.81,69665
+G270043,2010-2014,Minnesota,43,"State Senate District 43 (2014), Minnesota",81423,39.6,0.76,62845
+G270044,2010-2014,Minnesota,44,"State Senate District 44 (2014), Minnesota",81127,41.3,0.83,86163
+G270045,2010-2014,Minnesota,45,"State Senate District 45 (2014), Minnesota",80517,39.6,0.74,59295
+G270046,2010-2014,Minnesota,46,"State Senate District 46 (2014), Minnesota",79925,35.7,0.75,63401
+G270047,2010-2014,Minnesota,47,"State Senate District 47 (2014), Minnesota",81619,36.7,0.90,83257
+G270048,2010-2014,Minnesota,48,"State Senate District 48 (2014), Minnesota",81231,39.9,0.81,95075
+G270049,2010-2014,Minnesota,49,"State Senate District 49 (2014), Minnesota",81487,44.8,0.84,82007
+G270050,2010-2014,Minnesota,50,"State Senate District 50 (2014), Minnesota",81520,39.4,0.68,55575
+G270051,2010-2014,Minnesota,51,"State Senate District 51 (2014), Minnesota",80420,36.6,0.76,77109
+G270052,2010-2014,Minnesota,52,"State Senate District 52 (2014), Minnesota",80381,40.8,0.78,62900
+G270053,2010-2014,Minnesota,53,"State Senate District 53 (2014), Minnesota",82172,36.6,0.77,91141
+G270054,2010-2014,Minnesota,54,"State Senate District 54 (2014), Minnesota",79935,36.4,0.86,70926
+G270055,2010-2014,Minnesota,55,"State Senate District 55 (2014), Minnesota",82082,35,0.81,86374
+G270056,2010-2014,Minnesota,56,"State Senate District 56 (2014), Minnesota",81147,37.1,0.77,75637
+G270057,2010-2014,Minnesota,57,"State Senate District 57 (2014), Minnesota",80502,37.3,0.82,83747
+G270058,2010-2014,Minnesota,58,"State Senate District 58 (2014), Minnesota",81831,35.3,0.91,90483
+G270059,2010-2014,Minnesota,59,"State Senate District 59 (2014), Minnesota",82391,30.4,0.38,42539
+G270060,2010-2014,Minnesota,60,"State Senate District 60 (2014), Minnesota",81067,27.5,0.65,39210
+G270061,2010-2014,Minnesota,61,"State Senate District 61 (2014), Minnesota",82144,35.4,0.84,72942
+G270062,2010-2014,Minnesota,62,"State Senate District 62 (2014), Minnesota",81992,30.6,0.45,38894
+G270063,2010-2014,Minnesota,63,"State Senate District 63 (2014), Minnesota",80143,37.4,0.74,63319
+G270064,2010-2014,Minnesota,64,"State Senate District 64 (2014), Minnesota",79576,34.4,0.80,61095
+G270065,2010-2014,Minnesota,65,"State Senate District 65 (2014), Minnesota",80406,31.2,0.47,39009
+G270066,2010-2014,Minnesota,66,"State Senate District 66 (2014), Minnesota",80184,32.2,0.62,53642
+G270067,2010-2014,Minnesota,67,"State Senate District 67 (2014), Minnesota",83324,29.6,0.40,44904
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+,,,,,,,,
+SOURCE: 2014 American Community Survey: 5-year data,,,,,,,,
