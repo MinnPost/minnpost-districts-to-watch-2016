@@ -98,7 +98,7 @@
 
           {% for election in contest.related_election_results  %}
             {{election.title}} ({{election.year}})
-            <table
+            <table>
               <tbody>
               {% for candidate in election.result %}
                 {% if "Write-In" not in candidate.name %}
