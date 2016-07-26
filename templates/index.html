@@ -82,40 +82,32 @@
         </div>
 
         <div class="past-result column-medium-50">
-          Election {{contest.last_election_year}} result:
+
           <table>
             <tbody>
-            {% for candidate in contest.last_election_results %}
-              {% if "Write-In" not in candidate.name %}
-                <tr>
-                    <td><span class="color-political-{{candidate.party.lower()}}">{{candidate.name}} ({{candidate.party}})</span></td>
-                    <td>{{candidate.percentage}}%</td>
-                </tr>
-              {% endif%}
-            {% endfor %}
-            </tbody>
-          </table>
-
-          {% for election in contest.related_election_results  %}
-            {{election.title}} ({{election.year}})
-            <table>
-              <tbody>
-              {% for candidate in election.result %}
+              <tr><td colspan="2"><strong>Election {{contest.last_election_year}} result:</strong></td></tr>
+              {% for candidate in contest.last_election_results %}
                 {% if "Write-In" not in candidate.name %}
                   <tr>
                       <td><span class="color-political-{{candidate.party.lower()}}">{{candidate.name}} ({{candidate.party}})</span></td>
                       <td>{{candidate.percentage}}%</td>
                   </tr>
-                {% endif %}
+                {% endif%}
               {% endfor %}
-              </tbody>
-            </table>
 
-          {% endfor %}
+              {% for election in contest.related_election_results  %}
+                <tr><td colspan="2"><strong>{{election.title}} ({{election.year}}):</strong></td></tr>
+                  {% for candidate in election.result %}
+                    {% if "Write-In" not in candidate.name %}
+                      <tr>
+                          <td><span class="color-political-{{candidate.party.lower()}}">{{candidate.name}} ({{candidate.party}})</span></td>
+                          <td>{{candidate.percentage}}%</td>
+                      </tr>
+                    {% endif %}
+                  {% endfor %}
+              {% endfor %}
 
-          President 2012:
-          <table>
-            <tbody>
+              <tr><td colspan="2"><strong>President 2012:</strong></td></tr>
               {% if contest.prez_results.obama > contest.prez_results.romney %}
                 <tr><td><span class="color-political-dfl">Obama (D)</span></td><td>{{contest.prez_results.obama}}%</td></tr>
                 <tr><td><span class="color-political-r">Romney (R)</span></td><td>{{contest.prez_results.romney}}%</td></tr>
@@ -124,8 +116,9 @@
                 <tr><td><span class="color-political-dfl">Obama (D)</span></td><td>{{contest.prez_results.obama}}%</td></tr>
               {% endif %}
             </tbody>
-          </table>
-        </div>
+        </table>
+
+        </div><!--Past result-->
       </div>
     </div>
 
