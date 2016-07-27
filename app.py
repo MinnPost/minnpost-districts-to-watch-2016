@@ -255,7 +255,6 @@ def formatted_elections(elections):
             district = title[23:]
             for letter in ["A","B"]:
                 related_district_title = "State Representative District " + district +letter
-                print(related_district_title)
                 related_district_result = election_data.get(related_district_title)
                 related_election_results.append({'title':related_district_title,
                                                  'year': '2014',
@@ -263,7 +262,6 @@ def formatted_elections(elections):
         if "State Representative" in title:
             district = title[29:-1]
             related_district_title = "State Senator District" + district
-            print(related_district_title)
             related_district_result = election_data.get(related_district_title)
             related_election_results.append({'title':related_district_title,
                                              'year': '2012',
