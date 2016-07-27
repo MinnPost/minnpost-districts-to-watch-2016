@@ -8,6 +8,7 @@
     .mp .election {padding: 1em; border-bottom: 1px solid #ccc;}
     .mp .map-link {margin: -1em 0 1em;}
     .mp #total-contests {padding-bottom: 1em; border-bottom: 1px solid #ccc;}
+    .text-right {text-align: right;}
     .search-box {width: 100%; margin: 0 auto 1em; text-align: center}
     .mp .form-input-group {width:80%; margin: 0 auto;}
     #text_search {width: 100%;}
@@ -52,7 +53,7 @@
       <div class="row">
         <h4>{{contest.title}}</h4>
         <div class="map-link"><a href="{{contest.map_url}}" target="_blank">District map</a> [PDF]</div>
-        <div class="current-race column-medium-50">
+        <div class="current-race column-medium-33">
           <strong>Incumbent:</strong>
 
           <ul class="candidate-list">
@@ -81,7 +82,17 @@
 
         </div>
 
-        <div class="past-result column-medium-50">
+        <div class="demographics column-medium-33">
+          <table>
+            <tbody>
+              <tr><td>Median age</td><td class="text-right">{{contest.demographics.med_age}} years</td></tr>
+              <tr><td>Median income</td><td class="text-right">${{contest.demographics.med_inc}}</td></tr>
+              <tr><td>Percent white</td><td class="text-right">{{contest.demographics.pct_wht}}%</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="past-result column-medium-33">
 
           <table>
             <tbody>
@@ -90,7 +101,7 @@
                 {% if "Write-In" not in candidate.name %}
                   <tr>
                       <td><span class="color-political-{{candidate.party.lower()}}">{{candidate.name}} ({{candidate.party}})</span></td>
-                      <td>{{candidate.percentage}}%</td>
+                      <td class="text-right">{{candidate.percentage}}%</td>
                   </tr>
                 {% endif%}
               {% endfor %}
@@ -101,7 +112,7 @@
                     {% if "Write-In" not in candidate.name %}
                       <tr>
                           <td><span class="color-political-{{candidate.party.lower()}}">{{candidate.name}} ({{candidate.party}})</span></td>
-                          <td>{{candidate.percentage}}%</td>
+                          <td class="text-right">{{candidate.percentage}}%</td>
                       </tr>
                     {% endif %}
                   {% endfor %}
@@ -109,11 +120,11 @@
 
               <tr><td colspan="2"><strong>President 2012:</strong></td></tr>
               {% if contest.prez_results.obama > contest.prez_results.romney %}
-                <tr><td><span class="color-political-dfl">Obama (D)</span></td><td>{{contest.prez_results.obama}}%</td></tr>
-                <tr><td><span class="color-political-r">Romney (R)</span></td><td>{{contest.prez_results.romney}}%</td></tr>
+                <tr><td><span class="color-political-dfl">Obama (D)</span></td><td class="text-right">{{contest.prez_results.obama}}%</td></tr>
+                <tr><td><span class="color-political-r">Romney (R)</span></td><td class="text-right">{{contest.prez_results.romney}}%</td></tr>
               {% else %}
-                <tr><td><span class="color-political-r">Romney (R)</span></td><td>{{contest.prez_results.romney}}%</td></tr>
-                <tr><td><span class="color-political-dfl">Obama (D)</span></td><td>{{contest.prez_results.obama}}%</td></tr>
+                <tr><td><span class="color-political-r">Romney (R)</span></td><td class="text-right">{{contest.prez_results.romney}}%</td></tr>
+                <tr><td><span class="color-political-dfl">Obama (D)</span></td><td class="text-right">{{contest.prez_results.obama}}%</td></tr>
               {% endif %}
             </tbody>
         </table>

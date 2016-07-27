@@ -160,11 +160,42 @@ def map_url(election_title):
 
     return url
 
+def demographic_data():
+    district_demographics = {}
+
+    with open('data/demographic-SDs.csv','r') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            district = row['DISTRICT']
+            title = "State Senator District " + district
+
+            district_demographics[title] = {
+                                                "med_age": row['med_age'],
+                                                "med_inc": '{:,}'.format(int(row['med_income'])),
+                                                "pct_wht": int(float(row['pct_white'])*100)
+                                             }
+
+    with open('data/demographic-HDs.csv','r') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            district = row['DISTRICT']
+            if district[0] == 0:
+                district = district[1:]
+            title = "State Representative District " + district
+
+            district_demographics[title] = {
+                                                "med_age": row['med_age'],
+                                                "med_inc": '{:,}'.format(int(row['med_income'])),
+                                                "pct_wht": int(float(row['pct_white'])*100)
+                                            }
+    return district_demographics
+
 def formatted_elections(elections):
 
     f_elections = []
 
     election_data = prev_election_data()
+    demo_data = demographic_data()
 
     for election in elections:
         title = election
@@ -241,6 +272,7 @@ def formatted_elections(elections):
 
         prez_results = election_data['prez'].get(title) #2012 presidential result
 
+
         #filtering to Lege elections
         if "State Senator" in title or "State Representative" in title:
             f_elections.append({
@@ -249,6 +281,7 @@ def formatted_elections(elections):
                                     "incumbent": incumbent_candidate,
                                     "candidates": candidates,
                                     "classes": classes,
+                                    "demographics": demo_data.get(title),
                                     "last_election_year": last_election_year,
                                     "last_election_results": last_election_results,
                                     "related_election_results": related_election_results,
