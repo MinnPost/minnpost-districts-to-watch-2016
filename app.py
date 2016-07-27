@@ -190,12 +190,22 @@ def demographic_data():
                                             }
     return district_demographics
 
+def featured_blurbs():
+    blurbs = {}
+    with open('data/district-blurbs.csv', 'r') as f:
+        reader = csv.reader(f)
+        for row in reader:
+            blurbs[row[0]] = row[1]
+    return blurbs
+
+
 def formatted_elections(elections):
 
     f_elections = []
 
     election_data = prev_election_data()
     demo_data = demographic_data()
+    blurbs = featured_blurbs()
 
     for election in elections:
         title = election
@@ -222,6 +232,9 @@ def formatted_elections(elections):
             classes += " senate"
         if "State Representative" in title:
             classes += " house"
+
+        if title in blurbs:
+            classes += " featured"
 
         #incumbent handling
         incumbents = incumbent_data()
@@ -280,6 +293,7 @@ def formatted_elections(elections):
                                     "incumbent": incumbent_candidate,
                                     "candidates": candidates,
                                     "classes": classes,
+                                    "blurb": blurbs.get(title),
                                     "demographics": demo_data.get(title),
                                     "last_election_year": last_election_year,
                                     "last_election_results": last_election_results,
