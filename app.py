@@ -105,8 +105,8 @@ def prev_election_data():
                 district = district[1:]
             title = "State Representative District " + district
             election_results['prez'][title] = {
-                                                'romney': int(float(row[4])*100),
-                                                'obama': int(float(row[5])*100)
+                                                'romney': int(float(row[4])*10000)/100,
+                                                'obama': int(float(row[5])*10000)/100
                                                 }
     with open('data/2012-pres-by-SD.csv','r') as f:
         reader = csv.reader(f)
@@ -117,8 +117,8 @@ def prev_election_data():
                 district = district[1:]
             title = "State Senator District " + district
             election_results['prez'][title] = {
-                                                'romney': int(float(row[4])*100),
-                                                'obama': int(float(row[5])*100)
+                                                'romney': int(float(row[4])*10000)/100,
+                                                'obama': int(float(row[5])*10000)/100
                                                 }
 
     return election_results
