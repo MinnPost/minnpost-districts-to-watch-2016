@@ -89,11 +89,14 @@
 
         </div>
 
-        <div class="demographics column-large-33 column-medium-50">
+        <div class="map-demographics column-large-33 column-medium-50">
+        {% if contest.blurb %}
           <div class="map-container">
             <div id="map-{{contest.district}}" class="map" style="height:400px;width:90%;"></div>
           </div>
+        {% else %}
           <div class="map-link"><a href="{{contest.map_url}}" target="_blank">District map</a> [PDF]</div>
+        {% endif %}
           <table>
             <tbody>
               <tr><td>Median age</td><td class="text-right">{{contest.demographics.med_age}} years</td></tr>
@@ -283,6 +286,7 @@
     });
 
     {% for contest in contests %}
+    {% if contest.blurb %}
 
     var map{{contest.district}} = L.map('map-{{contest.district}}').setView([46.518286790004616, -93.5], 6);
 
@@ -313,7 +317,7 @@
       }
     });
 
-
+    {% endif %}
     {% endfor %}
 
     $(document).ready(function() {
