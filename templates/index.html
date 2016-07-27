@@ -25,6 +25,7 @@
     <div class="filter-links navigation horizontal">
         <h4>Show only:</h4>
         <ul>
+            <li><a href="#" data-filter="featured" class="filtering">Districts to Watch</a></li>
             <li><a href="#" data-filter="senate">Senate</a></li>
             <li><a href="#" data-filter="house">House</a></li>
             <li><a href="#" data-filter="uncontested">Uncontested</a></li>
@@ -176,6 +177,30 @@
                                    "races (out of <strong>" + total + "</strong> total races).");
     };
 
+    function filterLinks() {
+      var filters = new Array()
+      $('.filter-links a').each(function(){
+        if ($(this).hasClass("filtering")) {
+          filters.push($(this).data("filter"))
+        }
+      });
+
+      $('.election').each(function(){
+          var displaying = 1
+
+          for (f in filters) {
+            if (!$(this).hasClass(filters[f])) {
+              displaying = 0
+            }
+          }
+          if (displaying == 0) {
+            $(this).addClass("hidden")
+          } else {
+            $(this).removeClass("hidden")
+          }
+      });
+    }
+
     $('.filter-links a').click(function(e){
 
         e.preventDefault();
@@ -206,29 +231,7 @@
             $('*[data-filter="house"]').removeClass("filtering")
         }
 
-
-        var filters = new Array()
-        $('.filter-links a').each(function(){
-          if ($(this).hasClass("filtering")) {
-            filters.push($(this).data("filter"))
-          }
-        });
-
-        $('.election').each(function(){
-            var displaying = 1
-
-            for (f in filters) {
-              if (!$(this).hasClass(filters[f])) {
-                displaying = 0
-              }
-            }
-            if (displaying == 0) {
-              $(this).addClass("hidden")
-            } else {
-              $(this).removeClass("hidden")
-            }
-        });
-
+        filterLinks();
         showTotal();
     });
 
@@ -321,6 +324,7 @@
     {% endfor %}
 
     $(document).ready(function() {
+        filterLinks();
         showTotal();
     });
 </script>
