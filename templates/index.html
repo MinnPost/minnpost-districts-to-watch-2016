@@ -14,7 +14,6 @@
     .search-box {width: 100%; margin: 0 auto 1em; text-align: center}
     .mp .form-input-group {width:80%; margin: 0 auto;}
     .mp .map-container {width: 100%; text-align: center; margin-bottom:1em;}
-    .mp .map {margin:auto;}
     #text_search {width: 100%;}
     #total-contests {text-align: center;}
 </style>
@@ -91,9 +90,10 @@
         </div>
 
         <div class="map-demographics column-large-33 column-medium-50">
+        <div class="component-label">Map & Demographics</div>
         {% if contest.blurb %}
           <div class="map-container">
-            <div id="map-{{contest.district}}" class="map" style="height:400px;width:90%;"></div>
+            <div id="map-{{contest.district}}" class="map" style="height:400px;width:95%;"></div>
           </div>
         {% else %}
           <div class="map-link"><a href="{{contest.map_url}}" target="_blank">District map</a> [PDF]</div>
@@ -108,10 +108,10 @@
         </div>
 
         <div class="past-result column-large-33 column-medium-50">
-
+        <div class="component-label">Past election results</div>
           <table>
             <tbody>
-              <tr><td colspan="2"><strong>Election {{contest.last_election_year}} result:</strong></td></tr>
+              <tr><td colspan="2"><strong>This district, {{contest.last_election_year}}:</strong></td></tr>
               {% for candidate in contest.last_election_results %}
                 {% if "Write-In" not in candidate.name %}
                   <tr>
@@ -122,7 +122,7 @@
               {% endfor %}
 
               {% for election in contest.related_election_results  %}
-                <tr><td colspan="2"><strong>{{election.title}} ({{election.year}}):</strong></td></tr>
+                <tr><td colspan="2"><strong>{{election.title}}, {{election.year}}:</strong></td></tr>
                   {% for candidate in election.result %}
                     {% if "Write-In" not in candidate.name %}
                       <tr>
@@ -133,7 +133,7 @@
                   {% endfor %}
               {% endfor %}
 
-              <tr><td colspan="2"><strong>President 2012:</strong></td></tr>
+              <tr><td colspan="2"><strong>President, 2012:</strong></td></tr>
               {% if contest.prez_results.obama > contest.prez_results.romney %}
                 <tr><td><span class="color-political-dfl">Obama (D)</span></td><td class="text-right">{{contest.prez_results.obama}}%</td></tr>
                 <tr><td><span class="color-political-r">Romney (R)</span></td><td class="text-right">{{contest.prez_results.romney}}%</td></tr>
