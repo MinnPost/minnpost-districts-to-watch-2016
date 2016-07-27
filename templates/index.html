@@ -35,6 +35,10 @@
             <li><a href="#" data-filter="featured" class="filtering">Districts to Watch</a></li>
             <li><a href="#" data-filter="senate">Senate</a></li>
             <li><a href="#" data-filter="house">House</a></li>
+            <li><a href="#" data-filter="dfl-control">DFL controlled</a></li>
+            <li><a href="#" data-filter="gop-control">GOP controlled</a></li>
+            <li><a href="#" data-filter="obama-won">Obama won</a></li>
+            <li><a href="#" data-filter="romney-won">Romney won</a></li>
             <li><a href="#" data-filter="open-seat">Open Seat</a></li>
             <li><a href="#" data-filter="metro">Metro</a></li>
             <li><a href="#" data-filter="greatermn">Greater MN</a></lo>
@@ -238,6 +242,22 @@
         }
         if ($(this).data("filter") == "senate") {
             $('*[data-filter="house"]').removeClass("filtering")
+        }
+
+        //GOP and DFL control mututal exclusivity
+        if ($(this).data("filter") == "dfl-control") {
+          $('*[data-filter="gop-control"]').removeClass("filtering")
+        }
+        if ($(this).data("filter") == "gop-control") {
+          $('*[data-filter="dfl-control"]').removeClass("filtering")
+        }
+
+        //Romney and Obama mututal exclusivity
+        if ($(this).data("filter") == "romney-won") {
+          $('*[data-filter="obama-won"]').removeClass("filtering")
+        }
+        if ($(this).data("filter") == "obama-won") {
+          $('*[data-filter="romney-won"]').removeClass("filtering")
         }
 
         filterLinks();

@@ -15,8 +15,9 @@ def incumbent_data():
             district = "State Senator District " + row[0]
             name = row[1]
             year_elected = row[3]
+            party = row[2][0]
 
-            incumbents[district] = {"name": name, "year_elected": year_elected}
+            incumbents[district] = {"name": name, "year_elected": year_elected, "party": party}
 
     #house
     with open("data/house-incumbents.csv", "r") as f:
@@ -25,8 +26,9 @@ def incumbent_data():
             district = "State Representative District " + row[0]
             name = row[1]
             year_elected = row[3]
+            party = row[2][0]
 
-            incumbents[district] = {"name": name, "year_elected": year_elected}
+            incumbents[district] = {"name": name, "year_elected": year_elected, "party": party}
 
     return incumbents
 
@@ -198,7 +200,6 @@ def featured_blurbs():
             blurbs[row[0]] = row[1]
     return blurbs
 
-
 def formatted_elections(elections):
 
     f_elections = []
@@ -206,6 +207,7 @@ def formatted_elections(elections):
     election_data = prev_election_data()
     demo_data = demographic_data()
     blurbs = featured_blurbs()
+    incumbents = incumbent_data()
 
     for election in elections:
         title = election
@@ -237,10 +239,14 @@ def formatted_elections(elections):
             classes += " featured"
 
         #incumbent handling
-        incumbents = incumbent_data()
         if title in incumbents:
             incumbent_name = incumbents[title]["name"]
             incumbent_year_elected = incumbents[title]["year_elected"]
+
+            if incumbents[title]["party"] == "D":
+                classes += " dfl-control"
+            if incumbents[title]["party"] == "R":
+                classes += " gop-control"
 
             incumbent_running = False
 
@@ -254,6 +260,8 @@ def formatted_elections(elections):
             if not incumbent_running:
                 incumbent_candidate = ["Open seat","",""]
                 classes += " open-seat"
+
+
 
         #previous elections
         if "State Senator" in title:
@@ -282,7 +290,11 @@ def formatted_elections(elections):
 
 
         prez_results = election_data['prez'].get(title) #2012 presidential result
-
+        if prez_results:
+            if float(prez_results['romney']) > (prez_results['obama']):
+                classes += " romney-won"
+            if float(prez_results['obama']) > (prez_results['romney']):
+                classes += " obama-won"
 
         #filtering to Lege elections
         if "State Senator" in title or "State Representative" in title:
