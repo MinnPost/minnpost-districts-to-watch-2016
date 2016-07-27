@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://s3.amazonaws.com/data.minnpost/projects/minnpost-styles/0.0.6-alpha/minnpost-styles.min.css" type="text/css">
 <link rel="stylesheet" href="https://s3.amazonaws.com/data.minnpost/js/leaflet-0.6.1/leaflet.css">
-
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
 <style>
     body .node-unpublished {background-repeat: no-repeat;}
@@ -14,6 +14,14 @@
     .search-box {width: 100%; margin: 0 auto 1em; text-align: center}
     .mp .form-input-group {width:80%; margin: 0 auto;}
     .mp .map-container {width: 100%; text-align: center; margin-bottom:1em;}
+    .mp .to-watch {
+      border-radius: 5px;
+      padding:.25em 1em;
+      margin-bottom: 1em;
+      background-color: #0793AB;
+      color: #fff;
+      display: inline-block;
+    }
     #text_search {width: 100%;}
     #total-contests {text-align: center;}
 </style>
@@ -53,7 +61,11 @@
     <div class="election{{contest.classes}}">
       <div class="row">
         <h4>{{contest.title}}</h4>
+
         <div class="current-race  column-large-33 column-medium-50">
+
+          {% if contest.blurb %}<div class="to-watch"><i class="fa fa-star" aria-hidden="true"></i>District to Watch</div><br/>{% endif %}
+
           <strong>Incumbent:</strong>
 
           <ul class="candidate-list">
