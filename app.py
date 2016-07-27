@@ -179,7 +179,7 @@ def demographic_data():
         reader = csv.DictReader(f)
         for row in reader:
             district = row['DISTRICT']
-            if district[0] == 0:
+            if district[0] == "0":
                 district = district[1:]
             title = "State Representative District " + district
 
