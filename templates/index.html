@@ -97,7 +97,7 @@
           {% endif %}
 
           {% if contest.blurb %}
-          <p>{{contest.blurb}}</p>
+          <p>{{contest.blurb|safe}}</p>
           {% endif %}
 
         </div>
