@@ -277,14 +277,14 @@ def formatted_elections(elections):
             for letter in ["A","B"]:
                 related_district_title = "State Representative District " + district +letter
                 related_district_result = election_data.get(related_district_title)
-                related_election_results.append({'title':related_district_title,
+                related_election_results.append({'title':related_district_title.replace('Representative', 'House'),
                                                  'year': '2014',
                                                  'result': related_district_result})
         if "State Representative" in title:
             district = title[29:].lower()
             related_district_title = "State Senator District" + district[0:-1]
             related_district_result = election_data.get(related_district_title)
-            related_election_results.append({'title':related_district_title,
+            related_election_results.append({'title':related_district_title.replace('Senator', 'Senate'),
                                              'year': '2012',
                                              'result': related_district_result})
 
@@ -299,7 +299,7 @@ def formatted_elections(elections):
         #filtering to Lege elections
         if "State Senator" in title or "State Representative" in title:
             f_elections.append({
-                                    "title": title,
+                                    "title": title.replace('Representative', 'House').replace('Senator', 'Senate'),
                                     "district": district.strip(),
                                     "map_url": map_url(title),
                                     "incumbent": incumbent_candidate,

@@ -331,7 +331,7 @@
     map{{contest.district}}.removeControl(map{{contest.district}}.zoomControl);
     map{{contest.district}}.addControl(new L.Control.Zoom({ position: 'bottomright' }));
 
-    $.getJSON('https://boundaries.minnpost.com/1.0/boundary/{{contest.district}}-state-{% if 'Representative' in contest.title%}house{%else%}senate{%endif%}-district-2012?callback=?', function(data) {
+    $.getJSON('https://boundaries.minnpost.com/1.0/boundary/{{contest.district}}-state-{% if 'House' in contest.title%}house{%else%}senate{%endif%}-district-2012?callback=?', function(data) {
       if (data.simple_shape) {
         L.geoJson(data.simple_shape, {
             style: {
