@@ -125,6 +125,55 @@ def prev_election_data():
 
     return election_results
 
+def primary_results():
+    primary_winners = {}
+    #House winners
+    with open('data/2016-primary-state-representative.csv','r') as f:
+        results = csv.reader(f, delimiter=";")
+
+        for row in results:
+            title = row[4]
+            party = row[10]
+            candidate = row[7]
+            percent = row[14]
+
+            if title in primary_winners:
+                if party in primary_winners[title]:
+                    if float(percent) > float(primary_winners[title][party]['percent']):
+                        primary_winners[title][party] = {'candidate': candidate, 'percent': percent}
+                else:
+                    primary_winners[title][party] = {'candidate': candidate, 'percent': percent}
+            else:
+                primary_winners[title] = {party: {'candidate': candidate, 'percent': percent}}
+
+    #senate winners
+    with open('data/2016-primary-state-senate.csv','r') as f:
+        results = csv.reader(f, delimiter=";")
+
+        for row in results:
+            title = row[4]
+            party = row[10]
+            candidate = row[7]
+            percent = row[14]
+
+            if title in primary_winners:
+                if party in primary_winners[title]:
+                    if float(percent) > float(primary_winners[title][party]['percent']):
+                        primary_winners[title][party] = {'candidate': candidate, 'percent': percent}
+                else:
+                    primary_winners[title][party] = {'candidate': candidate, 'percent': percent}
+            else:
+                primary_winners[title] = {party: {'candidate': candidate, 'percent': percent}}
+
+    simple_winners = {}
+
+    for race in primary_winners:
+        simple_winners[race] = []
+        for party in primary_winners[race]:
+            simple_winners[race].append(primary_winners[race][party]['candidate'])
+
+    return simple_winners
+
 def candidate_data():
 
     elections = OrderedDict()
@@ -208,10 +257,20 @@ def formatted_elections(elections):
     demo_data = demographic_data()
     blurbs = featured_blurbs()
     incumbents = incumbent_data()
+    primary_winners = primary_results()
 
     for election in elections:
         title = election
         candidates = elections[election]
+
+        #look for primary winners IF there was a primary
+        if title in primary_winners:
+            final_candidates = []
+            for candidate in candidates:
+                if candidate[0] in primary_winners[title]:
+                    final_candidates.append(candidate)
+            candidates = final_candidates
+
         classes = ""
 
         if len(candidates) == 1:
