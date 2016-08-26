@@ -24,7 +24,7 @@ All data used for this application comes from csvs in the `/data` directory:
  - `district-blurbs.csv`: Short blurbs written by Briana Bierschbach describing the races in the 25 districts to watch
 
 ##Development
-It's recommended that you use a virtualenv. Additionally, the app was written in Python 3 Something like:
+It's recommended that you use a virtualenv. Additionally, the app was written in Python 3. Use something like:
 
 `virtualenv -p python3 venv`
 
